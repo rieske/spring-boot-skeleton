@@ -9,14 +9,15 @@ buildscript {
 }
 
 apply plugin: 'java'
-apply plugin: 'eclipse'
+apply plugin: 'eclipse-wtp'
 apply plugin: 'spring-boot'
+apply plugin: 'war'
 
 //sourceCompatibility = 1.7
 //targetCompatibility = 1.7
 
-jar {
-    baseName = 'spring-rest-mvc'
+war {
+    baseName = 'spring-mvc-rest'
     version = '0.0.1-SNAPSHOT'
 }
 
@@ -27,12 +28,12 @@ repositories {
 
 
 dependencies {
-    compile("org.springframework.boot:spring-boot-starter-web:${springBootVersion}")
-//    compile("com.fasterxml.jackson.core:jackson-databind:2.3.1")
+    compile("org.springframework.boot:spring-boot-starter-web")
     compile("com.mangofactory:swagger-springmvc:0.6.5") {
         exclude group: 'org.slf4j', module: 'slf4j-log4j12'
     }
     testCompile("junit:junit:4.11")
+    providedCompile("org.springframework.boot:spring-boot-starter-tomcat")
     //    compile 'org.springframework:spring-webmvc:4.0.1.RELEASE'
     //    compile 'com.fasterxml.jackson.core:jackson-core:2.3.1'
     //    compile 'com.fasterxml.jackson.core:jackson-databind:2.3.1'
