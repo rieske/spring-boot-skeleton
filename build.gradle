@@ -29,6 +29,7 @@ repositories {
 
 dependencies {
     compile("org.springframework.boot:spring-boot-starter-web")
+    compile("org.thymeleaf:thymeleaf-spring4")
     compile("com.mangofactory:swagger-springmvc:0.6.5") {
         exclude group: 'org.slf4j', module: 'slf4j-log4j12'
     }
