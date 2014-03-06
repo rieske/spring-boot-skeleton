@@ -1,5 +1,5 @@
 buildscript {
-    ext { springBootVersion = '1.0.0.RC3' }
+    ext { springBootVersion = '1.0.0.RC4' }
     repositories {
         mavenCentral()
         maven { url "http://repo.spring.io/snapshot" }
@@ -16,9 +16,12 @@ apply plugin: 'war'
 //sourceCompatibility = 1.7
 //targetCompatibility = 1.7
 
+def artifactId = 'spring-mvc-rest'
+def version = '0.0.1-SNAPSHOT'
+
 war {
-    baseName = 'spring-mvc-rest'
-    version = '0.0.1-SNAPSHOT'
+    baseName = artifactId
+    version = version
 }
 
 repositories {
@@ -29,12 +32,16 @@ repositories {
 
 dependencies {
     compile("org.springframework.boot:spring-boot-starter-web")
+    compile("org.springframework.boot:spring-boot-starter-actuator")
+    compile("org.springframework.boot:spring-boot-starter-security")
     compile("org.thymeleaf:thymeleaf-spring4")
     compile("com.mangofactory:swagger-springmvc:0.6.5") {
         exclude group: 'org.slf4j', module: 'slf4j-log4j12'
     }
-    testCompile("junit:junit:4.11")
     providedCompile("org.springframework.boot:spring-boot-starter-tomcat")
+    testCompile("junit:junit:4.11")
+    testCompile("org.springframework.boot:spring-boot-starter-test")
+
     //    compile 'org.springframework:spring-webmvc:4.0.1.RELEASE'
     //    compile 'com.fasterxml.jackson.core:jackson-core:2.3.1'
     //    compile 'com.fasterxml.jackson.core:jackson-databind:2.3.1'
@@ -45,6 +52,10 @@ dependencies {
     //    testCompile 'org.mockito:mockito-core:1.9.5'
     //    testCompile 'org.springframework:spring-test:4.0.1.RELEASE'
     //    providedCompile 'javax.servlet:javax.servlet-api:3.1.0'
+}
+
+processResources {
+    filter(org.apache.tools.ant.filters.ReplaceTokens, tokens: [version: version, artifactId : artifactId])
 }
 
 task wrapper(type: Wrapper) { gradleVersion = '1.11' }
