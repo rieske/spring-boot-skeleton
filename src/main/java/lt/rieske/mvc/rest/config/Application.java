@@ -1,24 +1,20 @@
 package lt.rieske.mvc.rest.config;
 
-import org.springframework.boot.actuate.autoconfigure.ErrorMvcAutoConfiguration;
+import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.boot.builder.SpringApplicationBuilder;
-import org.springframework.boot.context.web.SpringBootServletInitializer;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
+import com.mangofactory.swagger.plugin.EnableSwagger;
+
 @Configuration
-@EnableAutoConfiguration(exclude = { ErrorMvcAutoConfiguration.class })
+@EnableAutoConfiguration
+@EnableSwagger
 @ComponentScan(basePackages = { "lt.rieske.mvc.rest" })
-public class Application extends SpringBootServletInitializer {
+public class Application {
 
-    @Override
-    protected SpringApplicationBuilder configure(SpringApplicationBuilder applicationBuilder) {
-        return applicationBuilder.sources(Application.class);
-    }
-
-    public static void main(String[] args) {
-        new Application().configure(new SpringApplicationBuilder()).run(args);
-    }
+	public static void main(String[] args) {
+		SpringApplication.run(Application.class, args);
+	}
 
 }
