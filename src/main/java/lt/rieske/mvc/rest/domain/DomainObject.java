@@ -1,4 +1,4 @@
-package lt.rieske.mvc.rest.model;
+package lt.rieske.mvc.rest.domain;
 
 public class DomainObject {
     private final String id;

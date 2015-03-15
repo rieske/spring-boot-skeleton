@@ -1,6 +1,8 @@
 package lt.rieske.mvc.rest.api;
 
-import lt.rieske.mvc.rest.model.DomainObject;
+import java.util.Random;
+
+import lt.rieske.mvc.rest.domain.DomainObject;
 
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -12,16 +14,18 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 @RequestMapping(value = "api")
 public class ExampleController {
+	
+	private final Random random = new Random();
 
-    @RequestMapping(value = "/random", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    @ResponseBody
-    public DomainObject randomObject() {
-        return new DomainObject(String.valueOf(Math.random()));
-    }
+	@RequestMapping(value = "/random", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public DomainObject randomObject() {
+		return new DomainObject(String.valueOf(random.nextInt()));
+	}
 
-    @RequestMapping(value = "/object/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    @ResponseBody
-    public DomainObject getObject(@PathVariable String id) {
-        return new DomainObject(id);
-    }
+	@RequestMapping(value = "/object/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public DomainObject getObject(@PathVariable String id) {
+		return new DomainObject(id);
+	}
 }
