@@ -1,4 +1,4 @@
-package lt.rieske.mvc.rest.web;
+package lt.rieske.mvc.rest.api;
 
 import lt.rieske.mvc.rest.model.DomainObject;
 
