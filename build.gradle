@@ -56,6 +56,13 @@ task componentTest(type: Test) {
 	classpath = sourceSets.componentTest.runtimeClasspath
 }
 
+componentTest {
+    jacoco {
+        append = true
+        destinationFile = file("$buildDir/jacoco/test.exec")
+    }
+}
+
 componentTest.dependsOn test
 check.dependsOn componentTest
 jar.dependsOn check
