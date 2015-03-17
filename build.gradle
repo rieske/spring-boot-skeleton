@@ -44,6 +44,10 @@ checkstyle {
 	configFile = new File(rootDir, "checkstyle.xml")
 }
 
+findbugs {
+    sourceSets = [sourceSets.main, sourceSets.test]
+}
+
 sourceSets {
 	componentTest {
 		java.srcDir file('src/component-test/java')
