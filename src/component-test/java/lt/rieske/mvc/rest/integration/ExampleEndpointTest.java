@@ -24,13 +24,10 @@ public class ExampleEndpointTest {
 	@Value("${local.server.port}")
 	private int port;
 
-	private String endpoint() {
-		return "http://localhost:" + port;
-	}
-
 	@Before
 	public void setUp() {
 		RestAssured.enableLoggingOfRequestAndResponseIfValidationFails();
+		RestAssured.port = port;
 	}
 
 	@Test
@@ -39,7 +36,7 @@ public class ExampleEndpointTest {
 		given().
 			auth().basic("user", "password").
 		when().
-			get(endpoint() + "/api/object/abcde54321").
+			get("/api/object/abcde54321").
 		then().
 			statusCode(HttpStatus.SC_OK).
 			body(equalTo("{\"id\":\"abcde54321\"}"));
@@ -52,7 +49,7 @@ public class ExampleEndpointTest {
 		given().
 			auth().basic("user", "password").
 		when().
-			get(endpoint() + "/api/random").
+			get("/api/random").
 		then().
 			statusCode(HttpStatus.SC_OK).
 			body(notNullValue());
@@ -64,7 +61,7 @@ public class ExampleEndpointTest {
 		// @formatter:off
 		given().
 		when().
-			get(endpoint() + "/api/object/abcde54321").
+			get("/api/object/abcde54321").
 		then().
 			statusCode(HttpStatus.SC_UNAUTHORIZED);
 		// @formatter:on
@@ -75,7 +72,7 @@ public class ExampleEndpointTest {
 		// @formatter:off
 		given().
 		when().
-			get(endpoint() + "/api/random").
+			get("/api/random").
 		then().
 			statusCode(HttpStatus.SC_UNAUTHORIZED);
 		// @formatter:o
