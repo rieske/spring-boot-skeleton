@@ -1,9 +1,8 @@
-package lt.rieske.mvc.rest.integration;
+package lt.rieske.skeleton.integration;
 
 import static com.jayway.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.notNullValue;
-import lt.rieske.mvc.rest.config.Application;
 
 import org.apache.http.HttpStatus;
 import org.junit.Before;
@@ -15,6 +14,8 @@ import org.springframework.boot.test.WebIntegrationTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.jayway.restassured.RestAssured;
+
+import lt.rieske.skeleton.Application;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = Application.class)
@@ -75,7 +76,7 @@ public class ExampleEndpointTest {
 			get("/api/random").
 		then().
 			statusCode(HttpStatus.SC_UNAUTHORIZED);
-		// @formatter:o
+		// @formatter:off
 	}
 	
 }

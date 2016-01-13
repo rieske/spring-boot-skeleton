@@ -1,4 +1,4 @@
-package lt.rieske.mvc.rest.api;
+package lt.rieske.skeleton.resources;
 
 import static com.jayway.restassured.module.mockmvc.RestAssuredMockMvc.given;
 import static org.hamcrest.Matchers.equalTo;
@@ -12,6 +12,8 @@ import org.mockito.InjectMocks;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import com.jayway.restassured.module.mockmvc.RestAssuredMockMvc;
+
+import lt.rieske.skeleton.resources.ExampleController;
 
 @RunWith(MockitoJUnitRunner.class)
 public class ExampleControllerTest {

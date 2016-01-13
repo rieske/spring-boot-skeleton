@@ -1,4 +1,4 @@
-package lt.rieske.mvc.rest.config;
+package lt.rieske.skeleton;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -10,7 +10,7 @@ import com.mangofactory.swagger.plugin.EnableSwagger;
 @Configuration
 @EnableAutoConfiguration
 @EnableSwagger
-@ComponentScan(basePackages = { "lt.rieske.mvc.rest" })
+@ComponentScan(basePackages = { "lt.rieske.skeleton" })
 public class Application {
 
 	public static void main(String[] args) {

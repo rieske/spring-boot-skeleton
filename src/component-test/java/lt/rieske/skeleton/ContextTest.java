@@ -1,6 +1,4 @@
-package lt.rieske.mvc.rest;
-
-import lt.rieske.mvc.rest.config.Application;
+package lt.rieske.skeleton;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
