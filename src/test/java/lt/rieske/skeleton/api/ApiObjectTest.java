@@ -15,7 +15,7 @@ public class ApiObjectTest {
 
 	@Test
 	public void serializesDomainObjectToJson() throws JsonProcessingException {
-		String json = MAPPER.writeValueAsString(new ApiObject("abc123"));
+		var json = MAPPER.writeValueAsString(new ApiObject("abc123"));
 
 		assertThat(json).isEqualTo("{\"id\":\"abc123\"}");
 	}
