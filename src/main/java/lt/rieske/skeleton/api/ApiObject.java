@@ -1,9 +1,8 @@
 package lt.rieske.skeleton.api;
 
-public class ApiObject {
-    public final String id;
+import lombok.Data;
 
-    public ApiObject(String id) {
-        this.id = id;
-    }
+@Data
+public class ApiObject {
+    private final String id;
 }

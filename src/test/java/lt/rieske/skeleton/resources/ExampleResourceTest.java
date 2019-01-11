@@ -1,17 +1,16 @@
 package lt.rieske.skeleton.resources;
 
-import static com.jayway.restassured.module.mockmvc.RestAssuredMockMvc.given;
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.notNullValue;
-
+import io.restassured.module.mockmvc.RestAssuredMockMvc;
 import org.apache.http.HttpStatus;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
-import org.mockito.runners.MockitoJUnitRunner;
+import org.mockito.junit.MockitoJUnitRunner;
 
-import com.jayway.restassured.module.mockmvc.RestAssuredMockMvc;
+import static io.restassured.module.mockmvc.RestAssuredMockMvc.when;
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.notNullValue;
 
 @RunWith(MockitoJUnitRunner.class)
 public class ExampleResourceTest {
@@ -28,7 +27,6 @@ public class ExampleResourceTest {
 	@Test
 	public void returnsDomainObjectWithGivenId() {
 		// @formatter:off
-		given().
 		when().
 			get("/api/object/abcde54321").
 		then().
@@ -40,12 +38,11 @@ public class ExampleResourceTest {
 	@Test
 	public void returnsRandomDomainObject() {
 		// @formatter:off
-		given().
 		when().
 			get("/api/random").
 		then().
 			statusCode(HttpStatus.SC_OK).
 			body(notNullValue());
-		// @formatter:o
+		// @formatter:off
 	}
 }
