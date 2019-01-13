@@ -69,24 +69,23 @@ dependencies {
     compileOnly "org.projectlombok:lombok:${lombokVersion}"
     annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
 
-    compile 'org.springframework.boot:spring-boot-starter-web'
-    compile 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
 
-    compile "io.springfox:springfox-swagger2:${swaggerVersion}"
-    compile "io.springfox:springfox-swagger-ui:${swaggerVersion}"
+    implementation "io.springfox:springfox-swagger2:${swaggerVersion}"
+    implementation "io.springfox:springfox-swagger-ui:${swaggerVersion}"
 
-    testCompile "junit:junit:4.12"
-    testCompile "org.assertj:assertj-core:3.11.1"
-    testCompile "io.rest-assured:spring-mock-mvc:3.2.0"
-    testCompile "org.mockito:mockito-core:2.23.4"
-    testCompile "org.springframework.boot:spring-boot-starter-test"
+    testImplementation "junit:junit:4.12"
+    testImplementation "org.assertj:assertj-core:3.11.1"
+    testImplementation "io.rest-assured:spring-mock-mvc:3.2.0"
+    testImplementation "org.mockito:mockito-core:2.23.4"
+    testImplementation "org.springframework.boot:spring-boot-starter-test"
 
-    componentTestCompile sourceSets.main.output
-    componentTestCompile configurations.compile
-    componentTestCompile 'junit:junit:4.12'
-    componentTestCompile 'org.assertj:assertj-core:3.11.1'
-    componentTestCompile 'com.palantir.docker.compose:docker-compose-rule-junit4:0.34.0'
-    componentTestCompile 'io.rest-assured:rest-assured:3.1.0'
+    componentTestImplementation configurations.implementation
+    componentTestImplementation 'junit:junit:4.12'
+    componentTestImplementation 'org.assertj:assertj-core:3.11.1'
+    componentTestImplementation 'com.palantir.docker.compose:docker-compose-rule-junit4:0.34.0'
+    componentTestImplementation 'io.rest-assured:rest-assured:3.1.0'
 }
 
 mainClassName = 'lt.rieske.skeleton.Application'
