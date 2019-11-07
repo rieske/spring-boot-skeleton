@@ -33,7 +33,8 @@ sourceSets {
 task componentTest(type: Test) {
 	testClassesDirs = sourceSets.componentTest.output.classesDirs
 	classpath = sourceSets.componentTest.runtimeClasspath
-
+    testLogging.showStandardStreams = true
+    testLogging.exceptionFormat = "full"
     exclude("**/**Test.class")
 }
 
