@@ -11,7 +11,7 @@ import java.util.Random;
 
 @RestController
 @RequestMapping(value = "/api")
-public class ExampleResource {
+class ExampleResource {
 
     private final Random random = new Random();
 

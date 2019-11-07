@@ -2,30 +2,25 @@ package lt.rieske.skeleton.resources;
 
 import io.restassured.module.mockmvc.RestAssuredMockMvc;
 import org.apache.http.HttpStatus;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
-import org.mockito.junit.MockitoJUnitRunner;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import static io.restassured.module.mockmvc.RestAssuredMockMvc.when;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.notNullValue;
 
-@RunWith(MockitoJUnitRunner.class)
-public class ExampleResourceTest {
+class ExampleResourceTest {
 
-	@InjectMocks
-	ExampleResource controller;
+	private ExampleResource controller = new ExampleResource();
 
-	@Before
-	public void setUp() {
+	@BeforeEach
+	void setUp() {
 		RestAssuredMockMvc.standaloneSetup(controller);
 		RestAssuredMockMvc.enableLoggingOfRequestAndResponseIfValidationFails();
 	}
 
 	@Test
-	public void returnsDomainObjectWithGivenId() {
+	void returnsDomainObjectWithGivenId() {
 		// @formatter:off
 		when().
 			get("/api/object/abcde54321").
@@ -36,7 +31,7 @@ public class ExampleResourceTest {
 	}
 
 	@Test
-	public void returnsRandomDomainObject() {
+	void returnsRandomDomainObject() {
 		// @formatter:off
 		when().
 			get("/api/random").

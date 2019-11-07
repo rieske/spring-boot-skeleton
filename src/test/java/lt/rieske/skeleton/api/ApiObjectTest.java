@@ -1,20 +1,17 @@
 package lt.rieske.skeleton.api;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
-import org.junit.Test;
-
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.junit.jupiter.api.Test;
 
-import lt.rieske.skeleton.api.ApiObject;
+import static org.assertj.core.api.Assertions.assertThat;
 
-public class ApiObjectTest {
+class ApiObjectTest {
 
 	private static final ObjectMapper MAPPER = new ObjectMapper();
 
 	@Test
-	public void serializesDomainObjectToJson() throws JsonProcessingException {
+	void serializesDomainObjectToJson() throws JsonProcessingException {
 		var json = MAPPER.writeValueAsString(new ApiObject("abc123"));
 
 		assertThat(json).isEqualTo("{\"id\":\"abc123\"}");

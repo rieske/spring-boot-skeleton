@@ -1,8 +1,8 @@
 package lt.rieske.skeleton.api;
 
-import lombok.Data;
+import lombok.Value;
 
-@Data
+@Value
 public class ApiObject {
     private final String id;
 }
