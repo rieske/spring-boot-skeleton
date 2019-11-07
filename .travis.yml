@@ -5,7 +5,7 @@ jdk:
   - openjdk11
 
 install:
-  - ./gradlew build --stacktrace
+  - TESTCONTAINERS_RYUK_DISABLED=true ./gradlew build --stacktrace
 
 after_success:
   - ./gradlew jacocoTestReport coveralls
