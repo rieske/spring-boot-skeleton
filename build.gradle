@@ -80,7 +80,6 @@ dependencies {
     testImplementation("io.rest-assured:spring-mock-mvc:4.1.2")
 
     componentTestImplementation(configurations.implementation)
-    componentTestImplementation("org.assertj:assertj-core:3.11.1")
     componentTestImplementation("org.testcontainers:testcontainers:1.12.3")
     componentTestImplementation("io.rest-assured:rest-assured:4.1.2")
 }
