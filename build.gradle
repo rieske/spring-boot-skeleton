@@ -15,10 +15,6 @@ plugins {
     id "com.github.kt3k.coveralls" version "2.8.4"
 }
 
-java {
-    sourceCompatibility = JavaVersion.VERSION_11
-}
-
 repositories {
     mavenCentral()
 }
@@ -30,17 +26,15 @@ sourceSets {
 	}
 }
 
-task componentTest(type: Test) {
-	testClassesDirs = sourceSets.componentTest.output.classesDirs
-	classpath = sourceSets.componentTest.runtimeClasspath
-    testLogging.showStandardStreams = true
-    testLogging.exceptionFormat = "full"
-    exclude("**/**Test.class")
-}
+task componentTest(type: Test)
 
 tasks {
     wrapper {
         gradleVersion = "5.6.4"
+    }
+
+    java {
+        sourceCompatibility = JavaVersion.VERSION_11
     }
 
     bootJar {
@@ -58,11 +52,17 @@ tasks {
         configFile = new File(rootDir, "checkstyle.xml")
     }
 
-}
+    componentTest {
+        dependsOn(test)
+        testClassesDirs = sourceSets.componentTest.output.classesDirs
+        classpath = sourceSets.componentTest.runtimeClasspath
+        testLogging.showStandardStreams = true
+        testLogging.exceptionFormat = "full"
+        exclude("**/**Test.class")
+    }
 
-componentTest.dependsOn test
-check.dependsOn componentTest
-jar.dependsOn check
+    check.dependsOn(componentTest)
+}
 
 dependencies {
     compileOnly("org.projectlombok:lombok:1.18.4")
