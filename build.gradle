@@ -85,7 +85,7 @@ dependencies {
     componentTestImplementation 'junit:junit:4.12'
     componentTestImplementation 'org.assertj:assertj-core:3.11.1'
     componentTestImplementation 'com.palantir.docker.compose:docker-compose-rule-junit4:0.34.0'
-    componentTestImplementation 'io.rest-assured:rest-assured:3.1.0'
+    componentTestImplementation 'io.rest-assured:rest-assured:4.1.2'
 }
 
 mainClassName = 'lt.rieske.skeleton.Application'
