@@ -23,17 +23,6 @@ repositories {
     mavenCentral()
 }
 
-jacocoTestReport {
-    reports {
-        xml.enabled = true
-        html.enabled = true
-    }
-}
-
-checkstyle {
-	configFile = new File(rootDir, "checkstyle.xml")
-}
-
 sourceSets {
 	componentTest {
 		java.srcDir file("src/component-test/java")
@@ -48,8 +37,26 @@ task componentTest(type: Test) {
     exclude("**/**Test.class")
 }
 
-bootJar {
-    archiveFileName = "skeleton.jar"
+tasks {
+    wrapper {
+        gradleVersion = "5.6.4"
+    }
+
+    bootJar {
+        archiveFileName = "skeleton.jar"
+    }
+
+    jacocoTestReport {
+        reports {
+            xml.enabled = true
+            html.enabled = true
+        }
+    }
+
+    checkstyle {
+        configFile = new File(rootDir, "checkstyle.xml")
+    }
+
 }
 
 componentTest.dependsOn test
@@ -74,6 +81,3 @@ dependencies {
     componentTestImplementation("io.rest-assured:rest-assured:4.1.2")
 }
 
-wrapper {
-    gradleVersion = "5.6.4"
-}
