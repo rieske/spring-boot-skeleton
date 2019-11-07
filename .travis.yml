@@ -3,5 +3,9 @@ services:
   - docker
 jdk:
   - openjdk11
+
+script:
+  - ./gradlew build --stacktrace
+
 after_success:
   - ./gradlew jacocoTestReport coveralls
