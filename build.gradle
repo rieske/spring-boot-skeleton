@@ -89,3 +89,7 @@ dependencies {
 }
 
 mainClassName = 'lt.rieske.skeleton.Application'
+
+wrapper {
+    gradleVersion = "5.6.4"
+}
