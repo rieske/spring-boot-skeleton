@@ -7,5 +7,4 @@ A template for bootstrapping a Spring Boot microservice.
 
 Features
 ----
-- Swagger enabled (swagger-ui included)
 - Example unit and integration tests

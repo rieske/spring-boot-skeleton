@@ -1,30 +1,55 @@
 package lt.rieske.skeleton;
 
-import com.palantir.docker.compose.DockerComposeRule;
-import com.palantir.docker.compose.connection.waiting.HealthChecks;
 import io.restassured.RestAssured;
-import org.junit.Before;
-import org.junit.ClassRule;
+import lt.rieske.skeleton.integration.ExampleEndpointTest;
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
+import org.junit.runner.RunWith;
+import org.junit.runners.Suite;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.testcontainers.containers.DockerComposeContainer;
+import org.testcontainers.containers.output.Slf4jLogConsumer;
+import org.testcontainers.containers.wait.strategy.Wait;
 
-public abstract class ComponentTestHarness {
+import java.nio.file.Paths;
 
-    private static final String SERVICE_UNDER_TEST = "service";
 
+@RunWith(Suite.class)
+@Suite.SuiteClasses({
+        SmokeTest.class,
+        ExampleEndpointTest.class
+})
+public class ComponentTestHarness {
+
+    private static final Logger LOG = LoggerFactory.getLogger(ComponentTestHarness.class);
+
+    private static final String SERVICE_CONTAINER = "service_1";
     private static final int SERVICE_PORT = 8080;
-    private static final String SERVICE_URI_FORMAT = "http://$HOST:$EXTERNAL_PORT";
 
-    @ClassRule
-    public static DockerComposeRule docker = DockerComposeRule.builder()
-            .file("docker-compose.yml")
-            .waitingForService("service", HealthChecks.toHaveAllPortsOpen())
-            .waitingForService("service", HealthChecks.toRespond2xxOverHttp(SERVICE_PORT,
-                    port -> port.inFormat(SERVICE_URI_FORMAT + "/actuator/health")))
-            .build();
+    private static DockerComposeContainer environment =
+            new DockerComposeContainer(Paths.get("docker-compose.yml").toFile())
+                    .withLocalCompose(true)
+                    .withLogConsumer(SERVICE_CONTAINER, new Slf4jLogConsumer(LOG).withPrefix(SERVICE_CONTAINER))
+                    .withExposedService(SERVICE_CONTAINER, SERVICE_PORT, Wait.forListeningPort())
+                    .withExposedService(SERVICE_CONTAINER, SERVICE_PORT, Wait.forHttp("/actuator/health").forStatusCode(200));
 
-    @Before
-    public void setUpEnvironment() {
-        RestAssured.baseURI = docker.containers().container(SERVICE_UNDER_TEST)
-                .port(SERVICE_PORT).inFormat(SERVICE_URI_FORMAT);
+    @BeforeClass
+    public static void setUp() {
+        environment.start();
         RestAssured.enableLoggingOfRequestAndResponseIfValidationFails();
+        RestAssured.baseURI = serviceUrl();
     }
+
+    @AfterClass
+    public static void teardown() {
+        environment.stop();
+    }
+
+    public static String serviceUrl() {
+        return String.format("http://%s:%d",
+                environment.getServiceHost(SERVICE_CONTAINER, SERVICE_PORT),
+                environment.getServicePort(SERVICE_CONTAINER, SERVICE_PORT));
+    }
+
 }

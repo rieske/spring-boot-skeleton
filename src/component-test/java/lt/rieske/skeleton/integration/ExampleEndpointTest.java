@@ -1,6 +1,5 @@
 package lt.rieske.skeleton.integration;
 
-import lt.rieske.skeleton.ComponentTestHarness;
 import org.junit.Test;
 
 import static io.restassured.RestAssured.when;
@@ -8,7 +7,7 @@ import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.notNullValue;
 
 
-public class ExampleEndpointTest extends ComponentTestHarness {
+public class ExampleEndpointTest {
 
 	@Test
 	public void returnsDomainObjectWithGivenId() {

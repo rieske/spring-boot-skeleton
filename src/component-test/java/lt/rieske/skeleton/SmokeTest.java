@@ -4,7 +4,7 @@ import org.junit.Test;
 
 import static io.restassured.RestAssured.when;
 
-public class SmokeTest extends ComponentTestHarness {
+public class SmokeTest {
 
     @Test
     public void serviceStarts() {

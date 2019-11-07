@@ -1,7 +1,8 @@
-FROM openjdk:11.0.1-jdk-slim
+FROM openjdk:11.0.5-jdk-slim
 
 EXPOSE 8080 8081
-ADD build/libs/*.jar /opt/service/service.jar
 WORKDIR /opt/service
 
-ENTRYPOINT ["java", "-jar", "service.jar"]
+ENTRYPOINT exec java --illegal-access=warn -Xms128m -Xmx128m -jar service.jar
+
+ADD build/libs/skeleton.jar /opt/service/service.jar
