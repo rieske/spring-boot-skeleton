@@ -74,7 +74,7 @@ dependencies {
     testImplementation("io.rest-assured:spring-mock-mvc:4.3.1")
 
     componentTestImplementation(configurations.implementation)
-    componentTestImplementation("org.testcontainers:testcontainers:1.13.0")
+    componentTestImplementation("org.testcontainers:testcontainers:1.15.1")
     componentTestImplementation("io.rest-assured:rest-assured:4.3.1")
 }
 
