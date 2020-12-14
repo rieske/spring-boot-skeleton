@@ -71,7 +71,7 @@ dependencies {
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.junit.jupiter:junit-jupiter-api")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine")
-    testImplementation("io.rest-assured:spring-mock-mvc:4.3.1")
+    testImplementation("io.rest-assured:spring-mock-mvc:4.3.3")
 
     componentTestImplementation(configurations.implementation)
     componentTestImplementation("org.testcontainers:testcontainers:1.13.0")
